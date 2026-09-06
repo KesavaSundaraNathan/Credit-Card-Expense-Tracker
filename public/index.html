@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<title>Authenwrite Studio's Credit Card Expense Tracker</title>
+<meta name="description" content="A minimal local-first credit card expense tracker by Authenwrite Studio." />
+<meta name="theme-color" content="#FFFFFF" id="meta-theme-color" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Expense Tracker" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="icons/icon-192x192.png" />
+<link rel="stylesheet" href="src/styles/global.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <header class="app-bar">
+    <div class="app-bar-inner">
+      <div class="brand">
+        <div class="brand-eyebrow">Authenwrite Studio</div>
+        <div class="brand-name">Expense Tracker</div>
+      </div>
+
+      <div class="menu-wrap">
+        <button class="menu-trigger" id="menu-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Open navigation menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <span class="menu-trigger-label">Menu</span>
+          <svg class="menu-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+
+        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+          <button class="dropdown-item" data-nav="bill" role="menuitem" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-2 2-2-2-2 2-3-2z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>
+            Bill
+          </button>
+          <button class="dropdown-item" data-nav="table" role="menuitem" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M9 9.5V19.5"/></svg>
+            Table
+          </button>
+          <button class="dropdown-item" data-nav="log" role="menuitem" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h4"/></svg>
+            Log
+          </button>
+          <button class="dropdown-item" data-nav="stats" role="menuitem" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M12 20V4M20 20v-7"/></svg>
+            Stats
+          </button>
+          <button class="dropdown-item" data-nav="settings" role="menuitem" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            Settings
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="views">
+
+    <!-- BILL VIEW (landing) -->
+    <section class="view" data-view="bill" id="view-bill">
+      <div class="page-inner">
+        <div class="profile-switcher">
+          <button class="ps-arrow" id="ps-prev" type="button" aria-label="Previous profile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <span class="ps-name" id="ps-name">Expense Tracker</span>
+          <button class="ps-arrow" id="ps-next" type="button" aria-label="Next profile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="page-head">
+          <div>
+            <h1 id="bill-title">Statement</h1>
+            <div class="sub" id="bill-sub">&nbsp;</div>
+          </div>
+        </div>
+        <div id="bill-receipt"></div>
+      </div>
+    </section>
+
+    <!-- TABLE VIEW -->
+    <section class="view" data-view="table" id="view-table">
+      <div class="page-inner">
+        <div class="page-head">
+          <div>
+            <h1 id="table-title">Table</h1>
+            <div class="sub" id="table-sub">&nbsp;</div>
+          </div>
+        </div>
+        <div id="table-wrap"></div>
+      </div>
+    </section>
+
+    <!-- LOG VIEW -->
+    <section class="view" data-view="log" id="view-log">
+      <div class="page-inner">
+        <div class="page-head">
+          <div>
+            <h1>Log</h1>
+            <div class="sub">Past statements</div>
+          </div>
+        </div>
+        <div id="log-list"></div>
+      </div>
+    </section>
+
+    <!-- STATS VIEW -->
+    <section class="view" data-view="stats" id="view-stats">
+      <div class="page-inner">
+        <div class="page-head">
+          <div>
+            <h1>Stats</h1>
+            <div class="sub">This statement period</div>
+          </div>
+        </div>
+        <div id="stats-content"></div>
+      </div>
+    </section>
+
+    <!-- SETTINGS VIEW -->
+    <section class="view" data-view="settings" id="view-settings">
+      <div class="page-inner">
+        <div class="page-head">
+          <div>
+            <h1>Settings</h1>
+          </div>
+        </div>
+        <div id="settings-content"></div>
+      </div>
+    </section>
+
+    <!-- BUDGETS SUB-VIEW -->
+    <section class="view" data-view="budgets" id="view-budgets">
+      <div class="page-inner">
+        <button class="back-link" id="budgets-back" type="button" aria-label="Back to settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          Settings
+        </button>
+        <div class="page-head">
+          <div>
+            <h1>Budgets</h1>
+            <div class="sub" id="budgets-sub">Monthly budget per category</div>
+          </div>
+        </div>
+        <div id="budgets-list"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Fixed action dock: keeps FAB / export button anchored near the content column at any screen width -->
+  <div id="action-dock">
+    <button class="fab" id="fab-add" type="button" aria-label="Add expense">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+    </button>
+    <button class="corner-btn" id="btn-export" type="button" aria-label="Export">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+    </button>
+  </div>
+
+  <!-- Sheet backdrop + generic sheet mount points -->
+  <div class="sheet-backdrop" id="sheet-backdrop"></div>
+  <div id="sheet-root"></div>
+
+  <div class="toast" id="toast"></div>
+
+</div>
+
+<script src="src/vendor/jspdf.umd.min.js" defer></script>
+<script type="module" src="src/index.js"></script>
+</body>
+</html>
